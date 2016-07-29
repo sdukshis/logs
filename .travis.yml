@@ -3,7 +3,7 @@ dist: trusty
 language: cpp
 install:
   # Update GCC
-  - sudo update-alternatives --install /usr/bin/$CC $CC /usr/bin/$CC-$CXX_VERSION 60 --slave /usr/bin/$CXX $CXX /usr/bin/$CXX-$CXX_VERSION
+  - sudo update-alternatives --install /usr/bin/$CC $CC /usr/bin/$CC-$CXX_VERSION 100 --slave /usr/bin/$CXX $CXX /usr/bin/$CXX-$CXX_VERSION
   
   # Install conan
   - sudo pip install conan
