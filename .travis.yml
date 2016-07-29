@@ -3,8 +3,8 @@ dist: trusty
 language: cpp
 install:
   # Set env variables
-  - export CC=$CC-$CXX_VERSION
-  - export CXX=$CXX-$CXX_VERSION
+  - export CC=$CC-$COMPILER_VERSION
+  - export CXX=$CXX-$COMPILER_VERSION
   # Install conan
   - sudo pip install conan
   - conan install --build=missing
@@ -24,7 +24,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
-      env: CXX_VERSION=5
+      env: COMPILER_VERSION=5
     - compiler: gcc
       addons:
         apt:
@@ -32,7 +32,7 @@ matrix:
             - ubuntu-toolchain-r-test
           packages:
             - g++-6
-      env: CXX_VERSION=6
+      env: COMPILER_VERSION=6
     - compiler: clang
       addons:
         apt:
@@ -40,8 +40,9 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-3.6
           packages:
+            - g++-5
             - clang-3.6
-      env: CXX_VERSION=3.6
+      env: COMPILER_VERSION=3.6
     - compiler: clang
       addons:
         apt:
@@ -49,8 +50,9 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-3.8
           packages:
+            - g++-5
             - clang-3.8
-      env: CXX_VERSION=3.8
+      env: COMPILER_VERSION=3.8
     - compiler: clang
       addons:
         apt:
@@ -58,6 +60,7 @@ matrix:
             - ubuntu-toolchain-r-test
             - llvm-toolchain-trusty-3.9
           packages:
+            - g++-5
             - clang-3.9
-      env: CXX_VERSION=3.9
+      env: COMPILER_VERSION=3.9
 
