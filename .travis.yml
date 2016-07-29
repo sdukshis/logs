@@ -3,15 +3,16 @@ compiler:
   - gcc
 
 install:
-  # Upgrade GCC
+  # Upgrade GCC and cmake
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+  - sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
   - sudo apt-get update -qq
-  - sudo apt-get install -qq $CXX-$CXX_VERSION
+  - sudo apt-get install -qq $CXX-$CXX_VERSION cmake
   - sudo update-alternatives --install /usr/bin/$CC $CC /usr/bin/$CC-$CXX_VERSION 60 --slave /usr/bin/$CXX $CXX /usr/bin/$CXX-$CXX_VERSION
   
   # Install conan
   - sudo pip install conan
-  - conan install -s compiler=$CC -s compiler.version=$CXX_VERSION
+  - conan install
 
 script:
   - mkdir build && cd build
@@ -21,4 +22,4 @@ script:
 
 env:
   - CXX_VERSION=4.9
-  - CXX_VERSION=5.4
+  - CXX_VERSION=5
