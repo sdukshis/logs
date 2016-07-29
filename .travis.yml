@@ -1,3 +1,5 @@
+sudo: required
+dist: trusty
 language: cpp
 compiler:
   - gcc
@@ -19,6 +21,22 @@ script:
   - cmake --build .
   - ./bin/test_logs
 
-env:
-  - CXX_VERSION=4.9
-  - CXX_VERSION=6
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          source:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env: CXX_VERSION=4.9
+    - compiler: gcc
+      addons:
+        apt:
+          source:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-5
+      env: CXX_VERSION=5
+
