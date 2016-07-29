@@ -4,7 +4,8 @@ language: cpp
 install:
   # Update GCC
   - sudo update-alternatives --install /usr/bin/$CC $CC /usr/bin/$CC-$CXX_VERSION 100 --slave /usr/bin/$CXX $CXX /usr/bin/$CXX-$CXX_VERSION
-  
+  - update-alternatives --display clang
+  - clang --version
   # Install conan
   - sudo pip install conan
   - conan install --build=missing
@@ -47,17 +48,17 @@ matrix:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-3.7
+            - llvm-toolchain-trusty-3.8
           packages:
-            - clang-3.7
-      env: CXX_VERSION=3.7
+            - clang-3.8
+      env: CXX_VERSION=3.8
     - compiler: clang
       addons:
         apt:
           sources:
             - ubuntu-toolchain-r-test
-            - llvm-toolchain-trusty-3.8
+            - llvm-toolchain-trusty-3.9
           packages:
-            - clang-3.8
-      env: CXX_VERSION=3.8
+            - clang-3.9
+      env: CXX_VERSION=3.9
 
