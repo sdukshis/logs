@@ -1,14 +1,8 @@
 sudo: required
 dist: trusty
 language: cpp
-compiler:
-  - gcc
-
 install:
-  # Upgrade GCC
-  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq $CXX-$CXX_VERSION
+  # Update GCC
   - sudo update-alternatives --install /usr/bin/$CC $CC /usr/bin/$CC-$CXX_VERSION 60 --slave /usr/bin/$CXX $CXX /usr/bin/$CXX-$CXX_VERSION
   
   # Install conan
@@ -26,7 +20,7 @@ matrix:
     - compiler: gcc
       addons:
         apt:
-          source:
+          sources:
             - ubuntu-toolchain-r-test
           packages:
             - g++-4.9
@@ -34,7 +28,7 @@ matrix:
     - compiler: gcc
       addons:
         apt:
-          source:
+          sources:
             - ubuntu-toolchain-r-test
           packages:
             - g++-5
