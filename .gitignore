@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+
+# Sublime project files
+*.sublime-project
+*.sublime-workspace
+
+# Build directory
+build
