@@ -1,21 +1,23 @@
 language: cpp
 compiler:
-  - gcc-4.9
-  - gcc-5.4
-  - clang
+  - gcc
+
 install:
   # Upgrade GCC
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -qq
-  - sudo apt-get install -qq g++-6
-  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+  - sudo apt-get install -qq $CXX-$CXX_VERSION
 
   # Install conan
   - sudo pip install conan
-  - conan install
+  - conan install -s compiler=$CXX -s compiler.version=$CXX_VERSION
 
 script:
   - mkdir build && cd build
-  - cmake .. -DBUILD_TEST=ON
+  - cmake .. -DBUILD_TEST=ON -DCMAKE_CXX_COMPILER=$CXX-$CXX_VERSION
   - cmake --build .
   - ./bin/test_logs
+
+env:
+  - CXX_VERSION=4.9
+  - CXX_VERSION=5.3
