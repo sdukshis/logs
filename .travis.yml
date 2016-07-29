@@ -23,7 +23,7 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-4.9
+            - g++-5
       env: CXX_VERSION=4.9
     - compiler: gcc
       addons:
@@ -31,6 +31,24 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-5
-      env: CXX_VERSION=5
+            - g++-6
+      env: CXX_VERSION=6
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.6
+          packages:
+            - clang-3.6
+        env: CXX_VERSION=3.6
+    - compiler: clang
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-3.7
+          packages:
+            - clang-3.7
+        env: CXX_VERSION=3.7
 
