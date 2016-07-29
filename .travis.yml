@@ -11,7 +11,7 @@ install:
   
   # Install conan
   - sudo pip install conan
-  - conan install --build all
+  - conan install --build=missing
 
 script:
   - mkdir build && cd build
