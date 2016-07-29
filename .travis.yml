@@ -1,6 +1,7 @@
 language: cpp
 compiler:
-  - gcc
+  - gcc-4.9
+  - gcc-5.4
   - clang
 install:
   # Upgrade GCC
