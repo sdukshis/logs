@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <tuple>
+#include <memory>
 
 #include "logger.h"
 
@@ -21,15 +22,24 @@ public:
     Registry &operator=(Registry &&) = default;
 
     static Logger &logger(const std::string &name) {
-        auto iter = loggers_.end();
+        initialize_once();
+
+        auto iter = loggers_->end();
         auto inserted = false;
-        std::tie(iter, inserted) = loggers_.emplace(name, Logger{name});
+        std::tie(iter, inserted) = loggers_->emplace(name, Logger{name});
         return iter->second;
+    }
+
+protected:
+    static void initialize_once() {
+        if (!loggers_) {
+            loggers_ = std::make_unique<storage>();
+        }        
     }
 
 private:
     using storage = std::map<std::string, Logger>;
-    static storage loggers_;
+    static std::unique_ptr<storage> loggers_;
 };
 }
 }

@@ -2,4 +2,4 @@
 
 using sdukshis::logs::Registry;
 
-Registry::storage Registry::loggers_;
+std::unique_ptr<Registry::storage> Registry::loggers_;

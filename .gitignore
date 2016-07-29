@@ -34,3 +34,7 @@
 
 # Build directory
 build
+
+# Conan.io files
+conanbuildinfo.cmake
+conaninfo.txt
